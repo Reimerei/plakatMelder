@@ -14,9 +14,11 @@ modules
 precompiled
 project/project
 project/target
-target
+target/scala-2.10/cache/
 tmp
 test-result
 server.pid
 *.iml
 *.eml
+target/
+conf/secret*
