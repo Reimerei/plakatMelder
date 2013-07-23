@@ -1,14 +1,27 @@
+@(form: Form[models.Location])
+
+
+
 @main("Moin") {
 
     <a href="#" class="get-location">Get your location</a>
 
-
     <div class="location">
-        Testzwecke
+        -- Your Location --
     </div>
 
+    @helper.form(action = routes.LocationController.submit, 'id -> "locationForm", 'enctype -> "multipart/form-data") {
 
-    <input type="file" />
+        Name: <input type="text" name="name"> <br>
+        Beschreibung: <input type="text" name="description"> <br>
+        Bild: <input type="file" name="image"> <br>
+
+        <input type="hidden" name="locationLatitude" id="locationLatitude">
+        <input type="hidden" name="locationLongitude" id="locationLongitude">
+        <input type="submit" value="Submit">
+    }
+
+
 }
 
 

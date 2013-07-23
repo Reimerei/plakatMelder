@@ -9,11 +9,20 @@ $(document).ready(function () {
             // get user's current position
             navigator.geolocation.getCurrentPosition(function (position) {
 
+                var form = document.getElementById('locationForm')
+
                 // get latitude and longitude
                 var latitude = position.coords.latitude;
                 var longitude = position.coords.longitude;
 
+                // set hidden variables
+                document.getElementById('locationLongitude').value = longitude
+                document.getElementById('locationLatitude').value = latitude
+
+                // display
                 $('div.location').text(latitude + ", " + longitude);
+
+
             });
         }
 
