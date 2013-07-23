@@ -5,13 +5,9 @@ $(document).ready(function () {
 
         // check if browser supports geolocation
         if (navigator.geolocation) {
-            console.log("hi2a")
-
 
             // get user's current position
             navigator.geolocation.getCurrentPosition(function (position) {
-
-                console.log("hi2b")
 
                 // get latitude and longitude
                 var latitude = position.coords.latitude;
@@ -21,11 +17,8 @@ $(document).ready(function () {
             });
         }
 
-
-
         // fallback for browsers without geolocation
         else {
-            console.log("hi3")
 
             // get manually entered postcode
             startingLocation = $('.manual-location').val();
