@@ -4,7 +4,6 @@ import play.modules.reactivemongo.MongoController
 import play.api.mvc.{Action, Controller}
 import models.Location
 import reactivemongo.api.gridfs.GridFS
-import reactivemongo.bson.BSONValue
 
 /**
  * User: Björn Reimer
@@ -24,29 +23,15 @@ object LocationController extends Controller with MongoController {
   }
 
 
-  def submit = Action(gridFSBodyParser(gridFS)) {
+  def submit = Action {
     implicit request => {
-
       // create location object using submit data
       val location: Location = Location.form.bindFromRequest().get
-
-      // the bodyparser saved the image to gridfs, save imageId
-      val futureFile = request.body.files.head.ref
-
-      futureFile.map {
-        file =>
-
-          location.copy(imageId = file.id)
-
-
-          Async {
-            Location.save(location).map {
-              message => Ok(message)
-            }
-          }
+      Async {
+        Location.save(location).map {
+          message => Ok(message)
+        }
       }
     }
   }
-
-
 }
